@@ -1,0 +1,140 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/VM_IP.json",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "vmName": {
+      "type": "string"
+    },
+    "vmSize": {
+      "type": "string",
+      "defaultValue": "Standard_NC6"
+    },
+    "adminUserName": {
+      "type": "string"
+    },
+    "adminPassword": {
+      "type": "securestring"
+    },
+    "vnetName": {
+      "type": "string",
+      "defaultValue": "default-rg-vnet",
+      "metadata": {
+        "description": "Existing VNet Name"
+      }
+    },
+    "subnetName": {
+      "type": "string",
+      "defaultValue": "default",
+      "metadata": {
+        "description": "Existing subnet Name"
+      }
+    },
+    "vnetResourceGroupName": {
+      "type": "string",
+      "defaultValue": "default-rg",
+      "metadata": {
+        "description": "Resource group of the existing VNET"
+      }
+    },
+    "userImageStorageAccountResourceGroupName": {
+      "type": "string",
+      "defaultValue": "default-rg",
+      "metadata": {
+        "description": "Resource group of the existing image"
+      }
+    },
+    "userImageStorageAccountName": {
+      "type": "string",
+      "defaultValue": "defaultrgdisks247"
+    }
+  },
+  "variables": {
+    "publicIPAddressName": "[concat(parameters('vmName'), '-IP')]",
+    "vmName": "[parameters('vmName')]",
+    "nicName": "[concat(parameters('vmName'), '-nic')]",
+    "apiVersion": "2015-06-15"
+  },
+  "resources": [
+    {
+      "apiVersion": "2015-06-15",
+      "type": "Microsoft.Network/publicIPAddresses",
+      "name": "[variables('publicIPAddressName')]",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "publicIPAllocationMethod": "Dynamic"
+      }
+    },
+    {
+      "apiVersion": "2016-03-30",
+      "type": "Microsoft.Network/networkInterfaces",
+      "name": "[variables('nicName')]",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [
+        "[concat('Microsoft.Network/publicIPAddresses/', variables('publicIPAddressName'))]"
+      ],
+      "properties": {
+        "ipConfigurations": [
+          {
+            "name": "ipconfig1",
+            "properties": {
+              "privateIPAllocationMethod": "Dynamic",
+              "publicIPAddress": {
+                "id": "[resourceId('Microsoft.Network/publicIPAddresses', variables('publicIPAddressName'))]"
+              },
+              "subnet": {
+                "id": "[concat(resourceId(parameters('vnetResourceGroupName'), 'Microsoft.Network/virtualNetworks/', parameters('vnetName')), '/subnets/', parameters('subnetName'))]"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "apiVersion": "2016-03-30",
+      "type": "Microsoft.Compute/virtualMachines",
+      "location": "[resourceGroup().location]",
+      "name": "[parameters('vmName')]",
+      "properties": {
+        "hardwareProfile": {
+          "vmSize": "[parameters('vmSize')]"
+        },
+        "storageProfile": {
+          "osDisk": {
+            "osType": "Linux",
+            "name": "[concat(parameters('vmName'), '-osDisk.vhd')]",
+            "createOption": "FromImage",
+            "image": {
+              "uri": "https://defaultrgdisks247.blob.core.windows.net/system/Microsoft.Compute/Images/vhds/m2dsupsdlclass_vhd_-osDisk.652061c1-62ea-42b2-a7b3-ed06bb5d1d78.vhd"
+            },
+            "vhd": {
+              "uri": "[concat(reference(resourceId(parameters('userImageStorageAccountResourceGroupName'), 'Microsoft.Storage/storageAccounts/', parameters('userImageStorageAccountName')), variables('apiVersion')).primaryEndpoints.blob, 'vhds/', variables('vmName'), uniquestring(resourceGroup().id), 'osDisk.vhd')]"
+            },
+            "caching": "ReadWrite"
+          }
+        },
+        "osProfile": {
+          "computerName": "[parameters('vmName')]",
+          "adminUsername": "[parameters('adminUsername')]",
+          "adminPassword": "[parameters('adminPassword')]"
+        },
+        "networkProfile": {
+          "networkInterfaces": [
+            {
+              "id": "[resourceId('Microsoft.Network/networkInterfaces',variables('nicName'))]"
+            }
+          ]
+        },
+        "diagnosticsProfile": {
+          "bootDiagnostics": {
+            "enabled": true,
+            "storageUri": "https://defaultrgdiag708.blob.core.windows.net/"
+          }
+        },
+        "provisioningState": 0
+      },
+      "dependsOn": [
+        "[concat('Microsoft.Network/networkInterfaces/', variables('nicName'))]"
+      ]
+    }
+  ]
+}
