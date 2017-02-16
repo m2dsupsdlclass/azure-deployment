@@ -63,14 +63,14 @@ To deploy your own VM using this image, click on the following link:
 
 Here are the **important parameters**:
 
-- **Subscription**: "Microsoft Azure DeepNet"
+- **Subscription**: "Microsoft Azure DeepNet" (should be the default);
 - **Resource group**:
   - tick "create new" (if this is the first time you deploy a VM), then:
   - `firstname-lastname` (only lowercase ascii characters);
 - **Location**: choose "South Central US";
 - **VM name**: `firstname-lastname` (as for the resource group);
 - **Admin User Name**: a username of your choice, will be required for ssh;
-- **Admin Password**: it should be long enough, will be required for ssh;
+- **Admin Password**: it should be long enough, will be required for ssh.
 
 Feel free to pin this deployment to your dashboard to make it easy to
 find the next time you log in to the Azure portal.
