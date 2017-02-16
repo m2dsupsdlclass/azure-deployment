@@ -55,7 +55,7 @@ You can use this image to build your own VM. When doing so, please
 (using only lowercase ACSII characters) to make it easy to know which VM
 is owned by you. Here are the parameters to use:
 
-To deploy your own VM using this image, click on the following link.
+To deploy your own VM using this image, click on the following link:
 
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fm2dsupsdlclass%2Fazure-deployment%2Fmaster%2Fazuredeploy.json" target="_blank">
     <img src="http://azuredeploy.net/deploybutton.png"/>
@@ -63,17 +63,17 @@ To deploy your own VM using this image, click on the following link.
 
 Here are the **important parameters**:
 
-- Subscription: "Microsoft Azure DeepNet"
-- Resource group:
+- **Subscription**: "Microsoft Azure DeepNet"
+- **Resource group**:
   - tick "create new" (if this is the first time you deploy a VM), then:
   - `firstname-lastname` (only lowercase ascii characters);
-- Location: choose "South Central US";
-- VM name: `firstname-lastname` (as for the resource group);
-- Admin User Name: a username of your choice, will be required for ssh;
-- Admin Password: it should be long enough, will be required for ssh;
+- **Location**: choose "South Central US";
+- **VM name**: `firstname-lastname` (as for the resource group);
+- **Admin User Name**: a username of your choice, will be required for ssh;
+- **Admin Password**: it should be long enough, will be required for ssh;
 
 Feel free to pin this deployment to your dashboard to make it easy to
-find the next time.
+find the next time you log in to the Azure portal.
 
 You can leave the network configuration parameters to their default
 values.
@@ -85,6 +85,9 @@ again.
 
 If it still does not work, please contact Olivier or Charles preferably
 on slack.
+
+Once you are no longer using the VM, **don't forget to stop it!** (see
+below).
 
 
 ## Connecting to your VM
@@ -103,8 +106,8 @@ with the following script:
 
     source /workspace/workspace_setup.sh
 
-You should then be able to import keras from the python command in your
-PATH:
+You should then be able to import keras from the `python` command in
+your `PATH`:
 
     $ python -c "import keras"
     Using TensorFlow backend.
@@ -114,12 +117,13 @@ PATH:
     I tensorflow/stream_executor/dso_loader.cc:128] successfully opened CUDA library libcuda.so.1 locally
     I tensorflow/stream_executor/dso_loader.cc:128] successfully opened CUDA library libcurand.so locally
 
-For some unknown reason this is sometime very slow, but it gets better
-over time.
+For some unknown reason this is sometime very slow, but apprently it
+gets better over time when you actually use the VM for heavy GPU
+computation (e.g. when training models in a notebook).
 
-Feel free to launch the `tmux` command to keep be able to launch
-long running commands such as `jupyter notebook`. Learn about tmux
-here:
+Feel free to use the `tmux` command to get a session that you can
+re-attach to and launch long running commands such as `jupyter
+notebook. Learn about `tmux` here:
 
 http://www.hamvocke.com/blog/a-quick-and-easy-guide-to-tmux/
 
@@ -148,8 +152,6 @@ This should print the URL with a `localhost:8888` address and a unique
 security token. Copy the full URL into the URL bar of browser window
 running on your laptop and you should be good to go.
 
-Once you are no longer running the VM, **don't forget to stop it!** (see
-below).
 
 ## Monitoring GPU Usage
 
@@ -174,5 +176,5 @@ No compute credit will be used when the VM is stopped in the
 "deallocated" state.
 
 FYI a single GPU (NC6) VM costs approximately $1 / hour. Feel free to
-use it as much as you want but don't waste it by leaving it launched
-when you don't use it anymore.
+use it as much as you want but **don't waste it by leaving it launched
+when you don't use it anymore**.
