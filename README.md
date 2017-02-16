@@ -53,7 +53,7 @@ copy of the dogs-vs-cats dataset.
 You can use this image to build your own VM. When doing so, please
 **name the resource group and the VM it-self as "firstname-lastname"**
 (using only lowercase ACSII characters) to make it easy to know which VM
-is owned by you.
+is owned by you. Here are the parameters to use:
 
 To deploy your own VM using this image, click on the following link.
 
@@ -61,8 +61,22 @@ To deploy your own VM using this image, click on the following link.
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 
+Here are the **important parameters**:
+
+- Subscription: "Microsoft Azure DeepNet"
+- Resource group:
+  - tick "create new" (if this is the first time you deploy a VM), then:
+  - `firstname-lastname` (only lowercase ascii characters);
+- Location: choose "South Central US";
+- VM name: `firstname-lastname` (as for the resource group);
+- Admin User Name: a username of your choice, will be required for ssh;
+- Admin Password: it should be long enough, will be required for ssh;
+
 Feel free to pin this deployment to your dashboard to make it easy to
 find the next time.
+
+You can leave the network configuration parameters to their default
+values.
 
 If it does not work, please click on the top and righthand-side menu
 with your name and switch directory to the one named
@@ -84,7 +98,7 @@ If your laptop is under Windows, feel free to use
 [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/) to connect
 to your Azure VM on port 22.
 
-**The first time you loggin to your VM**: initialize your home folder
+**The first time you log in to your VM**: initialize your home folder
 with the following script:
 
     source /workspace/workspace_setup.sh
