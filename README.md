@@ -95,8 +95,9 @@ below).
 
 ## Connecting to your VM
 
-Once your VM is deployed, copy the IP address and from the Azure portal
-info you should be able to ssh into it:
+Once your VM is deployed (wait a couple of minutes for the VM to start
+and be ready to accept connections), copy the IP address and from the
+Azure portal info you should be able to ssh into it:
 
     ssh username@ip-address
 
