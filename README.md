@@ -32,13 +32,16 @@ We will grant you access to the "Microsoft Azure DeepNet" subscription
 that has credits for approximately 20,000 hours of GPU compute time for
 the class.
 
-Once we grant you the access, please logout and log back in to the
-portal interface, in the left hand side menu, click at the bottom
-on "More services" and then "Subscriptions". You should see:
+Once we grant you the access, you will probably arrive on a page, that
+states a message similar to "No available application, please contact
+your administrator." Ignore this message and instead go back to
+https://portal.azure.com, log out and log back in to the portal
+interface, in the left-hand side toolbar, click at the bottom on "More
+services" and then "Subscriptions". You should see:
 
 "Microsoft Azure DeepNet"
 
-If not, click on the top and righthand-side menu with your name and
+If not, click on the top and right-hand side menu with your name and
 switch directory to the one named "ericmoulinesoutlook.onmicrosoft...".
 Then check again the subscription menu. If you still cannot access the
 subscription please contact us on slack.
