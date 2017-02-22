@@ -17,7 +17,7 @@
     },
     "vnetName": {
       "type": "string",
-      "defaultValue": "default-rg-vnet",
+      "defaultValue": "default-vnet",
       "metadata": {
         "description": "Existing VNet Name"
       }
@@ -31,21 +31,21 @@
     },
     "vnetResourceGroupName": {
       "type": "string",
-      "defaultValue": "default-rg",
+      "defaultValue": "default-rg-eastus",
       "metadata": {
         "description": "Resource group of the existing VNET"
       }
     },
     "userImageStorageAccountResourceGroupName": {
       "type": "string",
-      "defaultValue": "default-rg",
+      "defaultValue": "default-rg-eastus",
       "metadata": {
         "description": "Resource group of the existing image"
       }
     },
     "userImageStorageAccountName": {
       "type": "string",
-      "defaultValue": "defaultrgdisks247"
+      "defaultValue": "eastusdisks"
     }
   },
   "variables": {

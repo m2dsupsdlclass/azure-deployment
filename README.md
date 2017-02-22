@@ -70,7 +70,7 @@ Here are the **important parameters**:
 - **Resource group**:
   - tick "create new" (if this is the first time you deploy a VM), then:
   - `firstname-lastname` (only lowercase ascii characters);
-- **Location**: choose "South Central US";
+- **Location**: choose "East US";
 - **VM name**: `firstname-lastname` (as for the resource group);
 - **Admin User Name**: a username of your choice, will be required for ssh;
 - **Admin Password**: it should be long enough, will be required for ssh.
