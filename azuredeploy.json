@@ -127,7 +127,7 @@
         "diagnosticsProfile": {
           "bootDiagnostics": {
             "enabled": true,
-            "storageUri": "https://defaultrgdiag708.blob.core.windows.net/"
+            "storageUri": "https://eastusdiag.blob.core.windows.net/"
           }
         },
         "provisioningState": 0
