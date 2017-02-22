@@ -104,7 +104,7 @@
             "name": "[concat(parameters('vmName'), '-osDisk.vhd')]",
             "createOption": "FromImage",
             "image": {
-              "uri": "https://eastusdisks.blob.core.windows.net/m2dsupsdlclass.vhd"
+              "uri": "https://eastusdisks.blob.core.windows.net/images/m2dsupsdlclass.vhd"
             },
             "vhd": {
               "uri": "[concat(reference(resourceId(parameters('userImageStorageAccountResourceGroupName'), 'Microsoft.Storage/storageAccounts/', parameters('userImageStorageAccountName')), variables('apiVersion')).primaryEndpoints.blob, 'vhds/', variables('vmName'), uniquestring(resourceGroup().id), 'osDisk.vhd')]"
