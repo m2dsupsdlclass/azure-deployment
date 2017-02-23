@@ -127,9 +127,8 @@ computation (e.g. when training models in a notebook).
 
 Feel free to use the `tmux` command to get a session that you can
 re-attach to and launch long running commands such as `jupyter
-notebook. Learn about `tmux` here:
-
-http://www.hamvocke.com/blog/a-quick-and-easy-guide-to-tmux/
+notebook`. Learn about `tmux` here: [a quick and easy guide to tmux](
+http://www.hamvocke.com/blog/a-quick-and-easy-guide-to-tmux/).
 
 ## Starting jupyter
 
