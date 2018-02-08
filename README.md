@@ -23,12 +23,12 @@ Charles on slack (or by email) and give us the email address you used to
 login to the azure interface. Let's use the following slack room to
 setup accounts:
 
-https://m2dsupsdlclass.slack.com/messages/azureaccounts/
+https://m2dsupsdlclass-2018.slack.com/messages/C8PTYNF9C/
 
 You need to be a registered student of the master to access this slack
 channel.
 
-We will grant you access to the "Microsoft Azure DeepNet" subscription
+We will grant you access to the "AZUREDEEPNETOG" subscription
 that has credits for approximately 20,000 hours of GPU compute time for
 the class.
 
@@ -39,7 +39,7 @@ https://portal.azure.com, log out and log back in to the portal
 interface, in the left-hand side toolbar, click at the bottom on "More
 services" and then "Subscriptions". You should see:
 
-"Microsoft Azure DeepNet"
+"AZUREDEEPNETOG"
 
 If not, click on the top and right-hand side menu with your name and
 switch directory to the one named "ericmoulinesoutlook.onmicrosoft...".
@@ -49,31 +49,35 @@ subscription please contact us on slack.
 
 ## Creating your own Virtual Machine (VM)
 
-We prepared a VM image with everything pre-installed (Python, CUDA,
-CuDNN, jupyter, keras, tensorflow-gpu 0.12.1, etc) along with a local
-copy of the dogs-vs-cats dataset.
+We will used the Azure Deep Learning VM image that comes with everything
+pre-installed (Python, CUDA, CuDNN, jupyter, keras, tensorflow-gpu,
+ etc).
 
 You can use this image to build your own VM. When doing so, please
 **name the resource group and the VM it-self as "firstname-lastname"**
 (using only lowercase ACSII characters) to make it easy to know which VM
-is owned by you. Here are the parameters to use:
+is owned by you.
 
-To deploy your own VM using this image, click on the following link:
+To deploy your own VM using this image, follow those steps in the
+portal:
 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fm2dsupsdlclass%2Fazure-deployment%2Fmaster%2Fazuredeploy.json" target="_blank">
-    <img src="http://azuredeploy.net/deploybutton.png"/>
-</a>
-
-Here are the **important parameters**:
-
-- **Subscription**: "Microsoft Azure DeepNet" (should be the default);
-- **Resource group**:
+- click "+ New" in the left hand size panel;
+- search for "Deep Learning Virtual Machine" and click on the "Create"
+  button;
+- **name**: "firstname-lastname" (only lowercase ascii characters);
+- **OS type**: "Linux";
+- choose a username and a password (write them down, you will need them
+  later);
+- **subscription**: "AZUREDEEPNETOG" (should be the default);
+- **resource group**:
   - tick "create new" (if this is the first time you deploy a VM), then:
   - `firstname-lastname` (only lowercase ascii characters);
-- **Location**: choose "East US";
-- **VM name**: `firstname-lastname` (as for the resource group);
-- **Admin User Name**: a username of your choice, will be required for ssh;
-- **Admin Password**: it should be long enough, will be required for ssh.
+- **location**: choose "East US" should work;
+- **virtual machine size**: "1x Standard NC6";
+- use the default storage account;
+- in the "Summary" panel, wait a bit for the validation and click "OK";
+- in the "Buy" panel, tick the checkbox and click "OK" (after reading
+  the boring legal text off-course);
 
 Feel free to pin this deployment to your dashboard to make it easy to
 find the next time you log in to the Azure portal.
@@ -83,8 +87,7 @@ values.
 
 If it does not work, please click on the top and righthand-side menu
 with your name and switch directory to the one named
-"ericmoulinesoutlook.onmicrosoft..." and then try to click on the link
-again.
+"ericmoulinesoutlook.onmicrosoft..." and then try again.
 
 If it still does not work, please contact Olivier or Charles preferably
 on slack.
