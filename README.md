@@ -108,21 +108,35 @@ If your laptop is under Windows, feel free to use
 [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/) to connect
 to your Azure VM on port 22.
 
-**The first time you log in to your VM**: initialize your home folder
-with the following script:
+Make sure to update the main packages provided in the conda distribution:
 
-    source /workspace/workspace_setup.sh
+    sudo /anaconda/bin/conda update pip setuptools numpy scikit-image jupyter matplotlib
+
+The upgrade `keras` and `tensorflow-gpu` (the GPU version) and  `kaggle-cli`
+which we will need later
+
+    pip install -U tensorflow-gpu==1.4.1 keras kaggle-cli
+
+Note that tensorflow 1.5 or later do not seem to work on that VM at the
+time of writing.
+
+If you prefer the new experimental jupyterlab over the traditional
+jupyter notebook interface you can install the latest version with pip:
+
+    sudo /anaconda/bin/pip install -U jupyterlab
 
 You should then be able to import keras from the `python` command in
 your `PATH`:
 
     $ python -c "import keras"
     Using TensorFlow backend.
-    I tensorflow/stream_executor/dso_loader.cc:128] successfully opened CUDA library libcublas.so locally
-    I tensorflow/stream_executor/dso_loader.cc:128] successfully opened CUDA library libcudnn.so locally
-    I tensorflow/stream_executor/dso_loader.cc:128] successfully opened CUDA library libcufft.so locally
-    I tensorflow/stream_executor/dso_loader.cc:128] successfully opened CUDA library libcuda.so.1 locally
-    I tensorflow/stream_executor/dso_loader.cc:128] successfully opened CUDA library libcurand.so locally
+    2018-02-08 16:12:58.121025: I tensorflow/core/platform/cpu_feature_guard.cc:137] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 FMA
+    2018-02-08 16:12:58.361406: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1030] Found device 0 with properties: 
+    name: Tesla K80 major: 3 minor: 7 memoryClockRate(GHz): 0.8235
+    pciBusID: d489:00:00.0
+    totalMemory: 11.17GiB freeMemory: 11.10GiB
+    2018-02-08 16:12:58.361473: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: d489:00:00.0, compute capability: 3.7)
+
 
 For some unknown reason this is sometime very slow, but apprently it
 gets better over time when you actually use the VM for heavy GPU
@@ -135,11 +149,13 @@ http://www.hamvocke.com/blog/a-quick-and-easy-guide-to-tmux/).
 
 ## Starting jupyter
 
-Upload your notebook either into your home folder `/home/username` or in
-the `/workspace` folder. Under Windows you can use PuTTY, under Linux
-and macOS you can use the `scp` command in a terminal.
+Upload your notebook either into your home folder `/home/username`.
+Under Windows you can use PuTTY, under Linux and macOS you can use the
+`scp` command in a terminal.
 
-Note that the notebook for lab #3 is already available in `/workspace`.
+You can also clone the official repo:
+
+    git clone https://github.com/m2dsupsdlclass/lectures-labs
 
 Ensure that you have no jupyter running on port 8888 on your local
 laptop, then open a ssh tunnel to your Azure VM:
@@ -150,9 +166,13 @@ Alternatively use PuTTY to setup a ssh tunnel on port 8888 both on your
 local machine and the remote Azure VM.
 
 Then on the VM (preferably under a `tmux` session), `cd` into the folder
-where you uploaded the notebooks (e.g. `/workspace`) and type:
+where you uploaded the notebooks and type:
 
-    jupyter notebook
+    jupyter notebook --no-browser
+
+or alternatively:
+
+    jupyter lab --no-browser
 
 This should print the URL with a `localhost:8888` address and a unique
 security token. Copy the full URL into the URL bar of browser window
