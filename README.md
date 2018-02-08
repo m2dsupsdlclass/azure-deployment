@@ -72,12 +72,18 @@ portal:
 - **resource group**:
   - tick "create new" (if this is the first time you deploy a VM), then:
   - `firstname-lastname` (only lowercase ascii characters);
-- **location**: choose "East US" should work;
+- **location**: choose "West Europe" should work;
 - **virtual machine size**: "1x Standard NC6";
 - use the default storage account;
 - in the "Summary" panel, wait a bit for the validation and click "OK";
 - in the "Buy" panel, tick the checkbox and click "OK" (after reading
   the boring legal text off-course);
+
+If you get a `QuotaExceeded` error message: try again with another location.
+Not all locations have NC6 virtual machines. Check the regions that have
+NC-series here:
+
+https://azure.microsoft.com/en-us/regions/services/
 
 Feel free to pin this deployment to your dashboard to make it easy to
 find the next time you log in to the Azure portal.
