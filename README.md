@@ -108,9 +108,9 @@ If your laptop is under Windows, feel free to use
 [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/) to connect
 to your Azure VM on port 22.
 
-Make sure to update the main packages provided in the conda distribution:
+Make sure to update setuptools:
 
-    sudo /anaconda/bin/conda update pip setuptools numpy scikit-image jupyter matplotlib
+    pip install -U pip setuptools
 
 The upgrade `keras` and `tensorflow-gpu` (the GPU version) and  `kaggle-cli`
 which we will need later
