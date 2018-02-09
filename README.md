@@ -166,7 +166,7 @@ You can also clone the official repo:
 Ensure that you have no jupyter running on port 8888 on your local
 laptop, then open a ssh tunnel to your Azure VM:
 
-    ssh -L 8888:localhost:8888 username@ip-address
+    ssh -L 9999:localhost:9999 username@ip-address
 
 Alternatively use PuTTY to setup a ssh tunnel on port 8888 both on your
 local machine and the remote Azure VM.
@@ -174,13 +174,13 @@ local machine and the remote Azure VM.
 Then on the VM (preferably under a `tmux` session), `cd` into the folder
 where you uploaded the notebooks and type:
 
-    jupyter notebook --no-browser
+    jupyter notebook --no-browser --port 9999
 
 or alternatively:
 
-    jupyter lab --no-browser
+    jupyter lab --no-browser --port 9999
 
-This should print the URL with a `localhost:8888` address and a unique
+This should print the URL with a `localhost:9999` address and a unique
 security token. Copy the full URL into the URL bar of browser window
 running on your laptop and you should be good to go.
 
