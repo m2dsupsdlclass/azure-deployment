@@ -163,12 +163,11 @@ You can also clone the official repo:
 
     git clone https://github.com/m2dsupsdlclass/lectures-labs
 
-Ensure that you have no jupyter running on port 8888 on your local
-laptop, then open a ssh tunnel to your Azure VM:
+Then open a ssh tunnel to your Azure VM on port 9999:
 
     ssh -L 9999:localhost:9999 username@ip-address
 
-Alternatively use PuTTY to setup a ssh tunnel on port 8888 both on your
+Alternatively use PuTTY to setup a ssh tunnel on port 9999 both on your
 local machine and the remote Azure VM.
 
 Then on the VM (preferably under a `tmux` session), `cd` into the folder
